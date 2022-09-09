@@ -1,0 +1,13 @@
+{% load wagtailimages_tags %}
+
+<div class="container flex flex-col justify-between px-5 mx-auto mb-10 sm:flex-row">
+    <div class="flex flex-col mt-5 sm:mt-10">
+        <p class="text-xl text-gray-500">{{ meta_text }}</p>
+        <h1 class="mt-5 text-2xl font-bold leading-10 tracking-tight text-indigo-600 sm:text-5xl">{{ strap_line }}</h1>
+        <p class="w-4/5 mt-5 text-lg text-black sm:w-2/3">{{ introduction  }}</p>
+    </div>
+    <div class="max-w-xs mx-auto mt-10">
+        {% image hero fill 320x320 %}
+        <p class="text-base leading-6 text-center text-gray-500">{{ image_credit }}</p>
+    </div>
+</div>
