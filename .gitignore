@@ -127,3 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+
+# Compiled
+website/static_compiled/
+media
+node_modules/

@@ -40,11 +40,15 @@ if "ALLOWED_HOSTS" in ENV:
 
 APP_NAME = ENV.get("APP_NAME", "website")
 
+WAGTAILIMAGES_IMAGE_MODEL = "images.CustomImage"
+
 DEBUG = False
 
 INSTALLED_APPS = [
     "website.home",
+    "website.images",
     "website.search",
+    "website.utils",
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",
     "wagtail.embeds",
@@ -175,7 +179,6 @@ MEDIA_URL = "/media/"
 
 
 # Wagtail settings
-
 WAGTAIL_SITE_NAME = "website"
 
 # Search
@@ -189,3 +192,30 @@ WAGTAILSEARCH_BACKENDS = {
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
 WAGTAILADMIN_BASE_URL = "http://example.com"
+
+
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+
+WAGTAILADMIN_RICH_TEXT_EDITORS = {
+    'default': {
+        'WIDGET': 'wagtail.admin.rich_text.DraftailRichTextArea',
+        'OPTIONS': {
+            'features': [
+                'h1',
+                'h2',
+                'h3',
+                'h4',
+                'h5',
+                'h6',
+                'bold',
+                'italic',
+                'ol',
+                'ul',
+                'link',
+                'document-link',
+                'image',
+                'embed'
+            ]
+        }
+    },
+}

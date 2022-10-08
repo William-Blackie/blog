@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@layer utilities {
+@layer base {
     .rich-text {
         p {
             --tw-text-opacity: 1;
