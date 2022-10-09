@@ -165,9 +165,6 @@ STATICFILES_DIRS = [
     os.path.join(PROJECT_DIR, "static_compiled"),
 ]
 
-# Place static files that need a specific URL (such as robots.txt and favicon.ico) in the "public" folder
-WHITENOISE_ROOT = (os.path.join(BASE_DIR, "public"),)
-
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
