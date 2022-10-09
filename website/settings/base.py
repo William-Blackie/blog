@@ -42,8 +42,6 @@ APP_NAME = ENV.get("APP_NAME", "website")
 
 WAGTAILIMAGES_IMAGE_MODEL = "images.CustomImage"
 
-DEBUG = False
-
 INSTALLED_APPS = [
     "website.home",
     "website.images",
@@ -62,6 +60,7 @@ INSTALLED_APPS = [
     "wagtail",
     "modelcluster",
     "taggit",
+    "storages",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -176,7 +175,7 @@ MEDIA_URL = "/media/"
 
 
 # Wagtail settings
-WAGTAIL_SITE_NAME = "website"
+WAGTAIL_SITE_NAME = "williamblackie.com"
 
 # Search
 # https://docs.wagtail.org/en/stable/topics/search/backends.html
@@ -188,7 +187,7 @@ WAGTAILSEARCH_BACKENDS = {
 
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
-WAGTAILADMIN_BASE_URL = "http://example.com"
+WAGTAILADMIN_BASE_URL = "https://william-blackie-website.fly.dev"
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
