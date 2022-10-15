@@ -1,49 +1,4 @@
 {% extends "pages/base.html" %}
 {% block content %}
     {% include "components/hero.html" %}
-    <section class="container pb-10 mx-auto sm:px-5">
-        <h2 id="projects"
-            class="px-5 pb-1 text-2xl font-bold text-indigo-600 sm:pl-0">Projets</h2>
-        <div class="container flex flex-wrap justify-around sm:justify-evenly mt-5 sm:mt-10 pb-2.5">
-            {% for item in projects %}
-                {% include "components/project-cards.html" %}
-            {% endfor %}
-        </div>
-        <a href="https://github.com/William-Blackie/"
-           class="flex flex-wrap px-10 text-base leading-6 text-gray-500 sm:pl-0 sm:mt-5 hover:text-indigo-600">
-            <p class="pr-3">Want to see more of my work?</p>
-            {% include "atoms/icons/github.html" %}
-        </a>
-    </section>
-    <section class="container px-5 mx-auto">
-        <h2 id="experience" class="pb-1 text-2xl font-bold text-indigo-600">Experience</h2>
-        {% for item in experience %}
-            <div class="container pb-2.5 mt-5 sm:mt-10">
-                <div class="container flex flex-col justify-between max-w-full sm:flex-row">
-                    <span class="sm:w-3/5">
-                        <h3 class="font-bold">{{ item.title }}</h3>
-                        <a class="text-indigo-600" href="{{ item.url }}">{{ item.company }}</a>
-                        <p>{{ item.description }}</p>
-                    </span>
-                    <p class="flex justify-start text-base leading-6 text-gray-500 sm:justify-end sm:w-2/5">{{ item.date }}</p>
-                </div>
-            </div>
-        {% endfor %}
-    </section>
-    <section class="container px-5 mx-auto mt-5 sm:mt-10">
-        <h2 class="pb-1 text-2xl font-bold text-indigo-600">Awards</h2>
-        {% for item in awards %}
-            <div class="container pb-2.5 mt-10">
-                <div class="container flex flex-col justify-between max-w-full sm:flex-row">
-                    <span>
-                        <h3 class="font-bold">{{ item.title }}</h3>
-                        <p>
-                            awarded by <a class="text-indigo-600" href="{{ item.url }}">{{ item.awarding_body }}</a>
-                        </p>
-                    </span>
-                    <p class="flex items-end text-base leading-6 text-gray-500">{{ item.date }}</p>
-                </div>
-            </div>
-        {% endfor %}
-    </section>
 {% endblock %}
