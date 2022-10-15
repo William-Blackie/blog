@@ -3,7 +3,8 @@
 FROM node:18 as frontend
 
 COPY package.json package-lock.json postcss.config.js tailwind.config.js webpack.config.js ./
-COPY /website/static_src/ /website/static_src/
+COPY ./website/static_src/ ./website/static_src/
+COPY ./website/templates ./website/templates 
 
 RUN npm ci && npm run build
 
@@ -68,11 +69,10 @@ RUN chown wagtail:wagtail /app
 
 # Copy the source code of the project into the container.
 COPY --chown=wagtail:wagtail . .
+COPY --from=frontend ./website/static_compiled ./website/static_compiled
 
 # Use user "wagtail" to run the build commands below and the server itself.
 USER wagtail
-
-COPY --from=frontend /website/static_compiled/ /website/static_compiled/
 
 # Collect static files.
 RUN python manage.py collectstatic --noinput --clear
