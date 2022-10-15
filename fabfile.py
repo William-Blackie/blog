@@ -34,11 +34,11 @@ LOCAL_DATABASE_DUMPS_FOLDER = "{0}/database_dumps".format(PROJECT_DIR)
 
 
 def dexec(cmd, service="web"):
-    return local(f"docker-compose exec -T {quote(service)} bash -c {quote(cmd)}")
+    return local(f"docker compose exec -T {quote(service)} bash -c {quote(cmd)}")
 
 
 def sudexec(cmd, service="web"):
-    return local(f"docker-compose exec --user=root -T {quote(service)} bash -c {quote(cmd)}")
+    return local(f"docker compose exec --user=root -T {quote(service)} bash -c {quote(cmd)}")
 
 
 @task
@@ -50,8 +50,8 @@ def build(c):
     local("mkdir -p media database_dumps")
     local(f"chown -R $USER:{group} media database_dumps")
     local("chmod -R 775 media database_dumps")
-    local("docker-compose build web")
-    local("docker-compose stop")
+    local("docker compose build web")
+    local("docker compose stop")
 
 
 @task
@@ -59,7 +59,7 @@ def start(c):
     """
     Start the development environment
     """
-    local("docker-compose up -d web")
+    local("docker compose up -d web")
 
     print(
         "Use `fab ssh` to enter the web container and run `djrun` to start the dev server"
@@ -71,7 +71,7 @@ def stop(c):
     """
     Stop the development environment
     """
-    local("docker-compose stop")
+    local("docker compose stop")
 
 
 @task
@@ -88,7 +88,7 @@ def destroy(c):
     """
     Destroy development environment containers (database will lost!)
     """
-    local("docker-compose down")
+    local("docker compose down")
 
 
 @task
@@ -96,7 +96,7 @@ def ssh(c):
     """
     Run bash in the local web container
     """
-    subprocess.run(["docker-compose", "exec", "web", "bash"])
+    subprocess.run(["docker", "compose", "exec", "web", "bash"])
 
 
 @task
@@ -104,7 +104,7 @@ def ssh_root(c):
     """
     Run bash as root in the local web container
     """
-    subprocess.run(["docker-compose", "exec", "--user=root", "web", "bash"])
+    subprocess.run(["docker", "compose", "exec", "--user=root", "web", "bash"])
 
 
 @task
@@ -113,7 +113,8 @@ def psql(c, command=None):
     Connect to the local postgres DB using psql
     """
     cmd_list = [
-        "docker-compose",
+        "docker",
+        "compose",
         "exec",
         "db",
         "psql",
