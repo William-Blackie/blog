@@ -3,6 +3,9 @@ import '../css/main.css';
 import Menu from './components/menu';
 
 document.addEventListener('DOMContentLoaded', () => {
-    new Menu();
+
+    if (document.querySelector(Menu.selector())) {
+        new Menu();
+    }
     hljs.highlightAll();
 });

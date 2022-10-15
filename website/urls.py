@@ -7,6 +7,7 @@ from wagtail import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
 
 from website.search import views as search_views
+from website.utils.views import error_500, error_404
 
 urlpatterns = [
     path("django-admin/", admin.site.urls),
@@ -23,6 +24,10 @@ if settings.DEBUG:
     # Serve static and media files from development server
     urlpatterns += staticfiles_urlpatterns()
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += [
+        path("test500", error_500),
+        path("test404", error_404)
+    ]
 
 urlpatterns = urlpatterns + [
     # For anything not caught by a more specific rule above, hand over to
@@ -33,3 +38,7 @@ urlpatterns = urlpatterns + [
     # of your site, rather than the site root:
     #    path("pages/", include(wagtail_urls)),
 ]
+
+# Error views
+handler404 = 'website.utils.views.handler404'
+handler500 = 'website.utils.views.handler500'

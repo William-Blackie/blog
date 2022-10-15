@@ -1,4 +1,9 @@
 class Menu {
+
+    static selector() {
+        return '#menu';
+    }
+
     constructor() {
         this.menuButton = document.querySelector('#menu-button');
         this.menu = document.querySelector('#menu');

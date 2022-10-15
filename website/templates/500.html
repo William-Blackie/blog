@@ -2,12 +2,22 @@
 <html lang="en" dir="ltr">
     <head>
         <meta charset="utf-8" />
-        <title>Internal server error</title>
+        <title>Whooops!</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <script src="https://cdn.tailwindcss.com"></script>
     </head>
     <body>
-        <h1>Internal server error</h1>
+        <nav class="container flex justify-between px-5 mx-auto mt-5 sm:mt-10 md:justify-between">
+            <a href="/">
+              <span class="text-indigo-600 sm:mt-5">
+                {% include 'atoms/icons/logo.html' %}
+              </span>
+            </a>
+          </nav>        
+        <section class="container flex flex-col justify-between px-5 mx-auto mb-10">
+        <h1 class="mt-5 text-2xl font-bold leading-10 tracking-tight text-indigo-600 sm:text-5xl">Internal server error</h1>
 
-        <h2>Sorry, there seems to be an error. Please try again soon.</h2>
+        <h2 class="mt-5 text-2xl font-bold leading-10 tracking-tight text-indigo-600 sm:text-5xl">Sorry, there seems to be an error. Please try again soon.</h2>
+        </section>
     </body>
 </html>

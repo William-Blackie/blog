@@ -1,11 +1,25 @@
-{% extends "base.html" %}
+{% extends "pages/base_page.html" %}
 
 {% block title %}Page not found{% endblock %}
 
-{% block body_class %}template-404{% endblock %}
+{% block navigation %}
+    <nav class="container flex justify-between px-5 mx-auto mt-5 sm:mt-10 md:justify-between">
+        <a href="/">
+        <span class="text-indigo-600 sm:mt-5">
+            {% include 'atoms/icons/logo.html' %}
+        </span>
+        </a>
+    </nav>
+{% endblock navigation %}
+
 
 {% block content %}
-<h1>Page not found</h1>
+<section class="container flex flex-col justify-between px-5 mx-auto mt-5 sm:mt-10">
+    <h1 class="mt-5 text-2xl font-bold leading-10 tracking-tight text-indigo-600 sm:text-5xl">Page not found</h1>
 
-<h2>Sorry, this page could not be found.</h2>
-{% endblock %}
+    <p class="text-xl text-gray-500">Sorry, this page could not be found.</h2>
+    <a class="text-sm font-bold leading-10 tracking-tight text-indigo-600 uppercase pt-50 sm:mt-0 sm:text-lg md:text-xl lg:text-3xl hover:opacity-80 hover:underline" href="/">
+        <p>Country roads, take me home</p>
+    </a>
+</section>
+{% endblock content %}

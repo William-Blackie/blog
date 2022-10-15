@@ -31,23 +31,23 @@
 
         {% block extra_css %}
         {# Override this in templates to add extra stylesheets #}
-        {% endblock %}
+        {% endblock extra_css %}
     </head>
 
-    <body class="{% block body_class %}{% endblock %}">
+    <body class="{% block body_class %}{% endblock body_class %}">
         {% wagtailuserbar %}
         
-        {% include "components/nav.html" %}
+        {% block navigation %}{% endblock navigation %}
 
-        {% block content %}{% endblock %}
+        {% block content %}{% endblock content %}
 
-        {% include "components/footer.html" %}
+        {% block footer %}{% endblock footer %}
 
         {# Global javascript #}
         <script type="text/javascript" src="{% static 'main.js' %}"></script>
 
         {% block extra_js %}
         {# Override this in templates to add extra javascript #}
-        {% endblock %}
+        {% endblock extra_js %}
     </body>
 </html>
