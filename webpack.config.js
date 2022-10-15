@@ -10,7 +10,7 @@ module.exports = {
         path: path.resolve(__dirname, './website/static_compiled')
     },
     plugins: [new MiniCssExtractPlugin({
-            filename: "main.css",
+            filename: "[name].css",
         }),
         new CopyPlugin({
             patterns: [{
@@ -30,15 +30,27 @@ module.exports = {
         }]
     },
     devServer: {
-        static: path.join(__dirname, './website/static_compiled'), // boolean | string | array | object, static file location
-        devMiddleware: {
-            index: true,
-            mimeTypes: { phtml: 'text/html' },
-            publicPath: '/publicPathForDevServe',
-            serverSideRender: true,
-            writeToDisk: true,
+        // Enable gzip compression for everything served.
+        compress: true,
+        host: '0.0.0.0',
+        port: 3000,
+        proxy: {
+            context: () => true,
+            target: 'http://localhost:8000',
         },
-        hot: true, // hot module replacement. Depends on HotModuleReplacementPlugin
-        liveReload: true,
-    },
+        client: {
+            logging: 'error',
+            // Shows a full-screen overlay in the browser when there are compiler errors.
+            overlay: true,
+        },
+        static: {
+            directory: path.resolve(__dirname, 'static'),
+        },
+        devMiddleware: {
+            // Write compiled files to disk. This makes live-reload work on both port 3000 and 8000.
+            writeToDisk: true,
+            index: '',
+            publicPath: '/static/',
+        },
+    }
 }
