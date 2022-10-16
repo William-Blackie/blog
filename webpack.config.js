@@ -6,8 +6,8 @@ module.exports = {
     mode: "production",
     entry: "./website/static_src/js/main.js",
     output: {
-        filename: "main.js",
-        path: path.resolve(__dirname, './website/static_compiled')
+        filename: "[name].js",
+        path: path.resolve(__dirname, './website/static_compiled'),
     },
     plugins: [new MiniCssExtractPlugin({
             filename: "[name].css",
@@ -29,6 +29,7 @@ module.exports = {
             ]
         }]
     },
+    devtool: 'source-map',
     devServer: {
         // Enable gzip compression for everything served.
         compress: true,
