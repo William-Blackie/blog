@@ -49,10 +49,7 @@ RUN curl -sSL https://install.python-poetry.org | POETRY_VERSION=${POETRY_VERSIO
 WORKDIR /app
 
 # Add bash commands
-COPY scripts/bash.sh bash.sh
-
-RUN touch /root/.bashrc \
- && cat bash.sh >> /root/.bashrc
+COPY scripts/bash.sh /home/wagtail/.bashrc
 
 # Install dependencies
 COPY poetry.lock pyproject.toml ./
