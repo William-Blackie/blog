@@ -36,10 +36,14 @@
 
     <body class="{% block body_class %}{% endblock body_class %}">
         {% wagtailuserbar %}
-        
+        <a href='#main-content' class="absolute z-10 px-3 py-2 text-base font-medium text-gray-100 bg-indigo-800 rounded-lg -left-full focus:translate-y-0 hover:no-underline hover:bg-indigo-600 hover:text-white focus:left-1/4">    
+            skip to main content
+        </a>
         {% block navigation %}{% endblock navigation %}
-
-        {% block content %}{% endblock content %}
+        
+        <div id="main-content">
+            {% block content %}{% endblock content %}
+        </div>
 
         {% block footer %}{% endblock footer %}
 
