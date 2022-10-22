@@ -7,31 +7,8 @@ from invoke import run as local
 from invoke.exceptions import Exit
 from invoke.tasks import task
 
-# Process .env file
-if os.path.exists(".env"):
-    with open(".env", "r") as f:
-        for line in f.readlines():
-            if line.startswith("#"):
-                continue
-            var, value = line.strip().split("=", 1)
-            os.environ.setdefault(var, value)
-
 PROJECT_DIR = "/app"
-
-PRODUCTION_APP_INSTANCE = ""
-STAGING_APP_INSTANCE = ""
-
-LOCAL_MEDIA_FOLDER = "{0}/media".format(PROJECT_DIR)
-LOCAL_IMAGES_FOLDER = "{0}/media/original_images".format(PROJECT_DIR)
-LOCAL_DATABASE_NAME = PROJECT_NAME = "wagtail"
-LOCAL_DATABASE_USERNAME = "wagtail"
-LOCAL_DATABASE_DUMPS_FOLDER = "{0}/database_dumps".format(PROJECT_DIR)
-
-
-############
-# Production
-############
-
+LOCAL_DATABASE_NAME = LOCAL_DATABASE_NAME = "wagtail"
 
 def dexec(cmd, service="web"):
     return local(f"docker compose exec -T {quote(service)} bash -c {quote(cmd)}")
@@ -126,3 +103,21 @@ def psql(c, command=None):
         cmd_list.extend(["-c", command])
 
     subprocess.run(cmd_list)
+
+
+
+########
+# fly
+########
+
+
+def open_fly_shell(c, app_instance):
+    subprocess.call(
+        [
+            "fly",
+            "ssh",
+            "console",
+            "-a",
+            app_instance,
+        ]
+    )
