@@ -2,13 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 @layer base {
+     :focus-visible,
+     :focus {
+        padding: 0.25rem;
+        border-radius: 3px;
+        outline: 3px solid rgb(79 70 229 / var(--tw-text-opacity));
+    }
     .rich-text {
         p {
             --tw-text-opacity: 1;
             color: rgb(0 0 0 / var(--tw-text-opacity));
             font-size: 1.125rem;
             line-height: 1.75rem;
-            margin-top: 1.25rem;
+            margin-bottom: 1.25rem;
         }
         img {
             border-radius: 25px;
@@ -38,6 +44,7 @@
         h1 {
             font-size: 3rem;
             line-height: 1;
+            margin-bottom: 1.25rem;
             --tw-text-opacity: 1;
             color: rgb(79 70 229 / var(--tw-text-opacity));
             font-weight: 700;
@@ -46,6 +53,7 @@
         h2 {
             font-size: 2rem;
             line-height: 2rem;
+            margin-bottom: 1.25rem;
             --tw-text-opacity: 1;
             color: rgb(79 70 229 / var(--tw-text-opacity));
             font-weight: 700;
