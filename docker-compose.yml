@@ -46,4 +46,4 @@ services:
     logging:
       driver: none
     volumes:
-      - ./database_dumps:/app/database_dumps:delegated,rw
+      - ./database_dumps:/database_dumps:delegated,rw
