@@ -31,8 +31,17 @@ RUN apt-get update --yes --quiet && apt-get install --yes --quiet --no-install-r
     libmariadbclient-dev \
     libjpeg62-turbo-dev \
     zlib1g-dev \
-    libwebp-dev \
- && rm -rf /var/lib/apt/lists/*
+    libwebp-dev
+
+# Purge old postgresql packages.
+RUN apt-get purge -y postgresql\*
+RUN apt-get install -y gnupg wget
+
+# Install postgresql-14-client
+RUN curl https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
+RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ buster-pgdg main" > /etc/apt/sources.list.d/pgdg.list
+RUN apt-get update --yes --quiet
+RUN apt-get install -y postgresql-client-14
 
 # Configure Poetry
 ENV POETRY_HOME="/opt/poetry" \
