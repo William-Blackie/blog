@@ -164,8 +164,29 @@ def pull_production_data(c, app_instance=PRODUCTION_APP_INSTANCE):
     drop_docker_db(c)
     database_dump = get_fly_database_dump(c, app_instance)
     restore_database_dump(c, database_dump)
+    createsuperuser = input("Do you want to create a superuser? (y/n) ").lower()
+    if createsuperuser == "y":
+        create_superuser(c)
+    else:
+        print("Skipping superuser creation")
     local(command=f"rm {database_dump}")
 
+@task
+def create_superuser(c):
+    """
+    Create a superuser in the local database
+    """
+    subprocess.call(
+            [
+                "docker",
+                "compose",
+                "exec",
+                "web",
+                "python",
+                "manage.py",
+                "createsuperuser",
+            ]
+        )
 
 ########
 # fly
