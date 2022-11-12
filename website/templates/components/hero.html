@@ -1,19 +1,25 @@
 {% load wagtailcore_tags wagtailimages_tags %}
-<div class="container flex flex-col justify-between px-5 mx-auto mb-10 sm:flex-row">
-    <div class="flex flex-col mt-5 sm:mt-10">
-        <p class="text-xl text-gray-500">{{ page.meta_text }}</p>
-        <div class="w-4/5 mt-5 text-lg text-black sm:w-2/3 rich-text">{{ page.introduction|richtext }}</div>
-    </div>
-    <div class="max-w-xs mx-auto mt-10">
-        <picture>
-            {% image page.hero_image fill-320x320 format-webp as image_webp %}
-            <source srcset="{{ image_webp.url }}" type="image/webp"/>
+<div class="container justify-between px-5 mx-auto ">
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-6 lg:grid-cols-12">
+        <div class="col-span-2 grid-rows-2 row-start-2 md:row-start-1 md:col-span-3 lg:col-span-6 sm:grid-rows-1">
+            {% include "atoms/icons/worker.html" %}
+        </div>
+        <div class="col-span-2 md:col-span-3 lg:col-span-6">
+            <p class="text-xl text-gray-500">{{ page.meta_text }}</p>
+            <div class="mt-5 text-lg text-black rich-text">{{ page.introduction|richtext }}</div>
+            <div class="hidden mt-10 md:flex">
+                {% include "atoms/button.html" with href="william.blackie96@gmail.com" text="Contact me" %}
+                {% if page.cv_file %}
+                    {% include "atoms/button.html" with href=page.cv_file.url text="Download CV" external=True classes="ml-5" %}
+                {% endif %}
+            </div>
+        </div>
+        <div class="flex justify-around mt-5 md:hidden">
+            {% include "atoms/button.html" with href="william.blackie96@gmail.com" text="Contact me" %}
+            {% if page.cv_file %}
+                {% include "atoms/button.html" with href=page.cv_file.url text="Download CV" external=True classes="ml-5" %}
+            {% endif %}
+        </div>
 
-            {% image page.hero_image fill-320x320 format-png as image_png %}
-            <source srcset="{{ image_png.url }}" type="image/png"/>
-
-            {% image page.hero_image fill-320x320 class="rounded-full" format-png %}
-        </picture>
-        <p class="text-base leading-6 text-center text-gray-500">{{ page.image_credit }}</p>
     </div>
 </div>

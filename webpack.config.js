@@ -33,7 +33,9 @@ module.exports = {
     devServer: {
         // Enable gzip compression for everything served.
         compress: true,
-        host: '0.0.0.0',
+        // reload on file change
+        hot: true,
+        host: 'localhost',
         port: 3000,
         proxy: {
             context: () => true,
