@@ -5,6 +5,14 @@ from wagtail.images.blocks import ImageChooserBlock
 from wagtail.documents.blocks import DocumentChooserBlock
 from os import listdir
 from os.path import isfile, join
+from django.core.exceptions import ValidationError
+from wagtail.blocks import StructValue
+
+class LinkStructValue(StructValue):
+    def url(self):
+        external_url = self.get('external_link')
+        internal_link = self.get('internal_link')
+        return external_url or internal_link.url
 
 class InternalExternalLinkBlock(blocks.StructBlock):
     """
@@ -16,12 +24,6 @@ class InternalExternalLinkBlock(blocks.StructBlock):
     class Meta:
         icon = 'link'
         template = 'utils/blocks/internal_external_link.html'
-
-    @property
-    def link(self):
-        if self.value.get('internal_link'):
-            return self.value.get('internal_link').url
-        return self.value.get('external_link')
 
     def clean(self, value):
         errors = {}
@@ -48,6 +50,9 @@ class InternalExternalLinkBlock(blocks.StructBlock):
 
         return super(InternalExternalLinkBlock, self).clean(value)
 
+    class Meta:
+        value_class = LinkStructValue
+
 
 class CardBlock(blocks.StructBlock):
     """
@@ -60,34 +65,17 @@ class CardBlock(blocks.StructBlock):
 
     class Meta:
         icon = 'placeholder'
-        template = 'components/blocks/card.html'
+        template = 'components/blocks/cards/card_block.html'
 
-
-class ProjectCardBlock(CardBlock):
+class CardsBlock(blocks.StructBlock):
     """
-    A card block with an link.
+    A block that contains a list of cards.
     """
-    github_link = blocks.URLBlock(required=False)
+    card = blocks.ListBlock(CardBlock())
 
     class Meta:
         icon = 'placeholder'
-        template = 'components/blocks/project_card.html'
-
-class ProjectsCardBlock(CardBlock):
-    """
-    This is a custom block for the homepage. It is a card with a list of projects.
-    """
-    project_cards = StreamField(
-        [
-            ('project', ProjectCardBlock()),
-        ],
-        null=True,
-        blank=True,
-    )
-
-    class Meta:
-        icon = 'placeholder'
-        template = 'components/blocks/projects_card.html'
+        template = 'components/blocks/cards/cards_block.html'
 
 class ImageWithCaptionBlock(ImageChooserBlock):
     """
@@ -144,6 +132,7 @@ class ContentStreamField(blocks.StreamBlock):
     document = DocumentChooserBlock()
     code = CodeBlock()
     image_text = ImageTextBlock()
+    cards = CardsBlock()
     
     class Meta:
         template = 'components/blocks/content.html'
