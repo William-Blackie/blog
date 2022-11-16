@@ -1,5 +1,5 @@
 {% load wagtailcore_tags %}
-<div class="grid grid-cols-1 col-span-10 gap-4 md:grid-cols-2 xl:grid-cols-2">
+<div class="grid col-span-10 col-start-1 gap-4 xl:col-start-2 md:grid-cols-2 xl:grid-cols-2">
     {% for card in value.card %}
       {% include_block card %}
     {% endfor %}
