@@ -1,6 +1,8 @@
 import hljs from 'highlight.js';
 import '../css/main.css';
 import Menu from './components/menu';
+import ConsoleMessage from './components/console-message';
+
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -8,4 +10,5 @@ document.addEventListener('DOMContentLoaded', () => {
         new Menu();
     }
     hljs.highlightAll();
+    ConsoleMessage();
 });
