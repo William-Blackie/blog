@@ -43,6 +43,7 @@ APP_NAME = ENV.get("APP_NAME", "website")
 WAGTAILIMAGES_IMAGE_MODEL = "images.CustomImage"
 
 INSTALLED_APPS = [
+    "website.blog",
     "website.home",
     "website.images",
     "website.search",

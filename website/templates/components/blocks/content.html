@@ -1,8 +1,6 @@
 {% load wagtailcore_tags %}
-<div class="container justify-between px-5 mx-auto mb-10">
-    <div class="grid grid-cols-4 gap-4 md:grid-cols-6 lg:grid-cols-12">
-        {% for block in value %}
-            {% include_block block %}
-        {% endfor %}
-    </div>
+<div class="grid grid-cols-4 gap-4 md:grid-cols-6 lg:grid-cols-12">
+    {% for block in value %}
+        {% include_block block %}
+    {% endfor %}
 </div>

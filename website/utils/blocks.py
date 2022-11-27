@@ -7,6 +7,7 @@ from os import listdir
 from os.path import isfile, join
 from django.core.exceptions import ValidationError
 from wagtail.blocks import StructValue
+from website.utils.constants import TAILWIND_COLOR_CHOICES
 
 class LinkStructValue(StructValue):
     def url(self):
@@ -118,6 +119,25 @@ class ImageTextBlock(blocks.StructBlock):
         template = 'components/blocks/image_text_block.html'
 
 
+class TailwindColorStructValue(StructValue):
+    def text_color(self):
+        return "text-" + self.get('color')
+    
+    def background_color(self):
+        return "bg-" + self.get('color')
+
+class ColorBlock(blocks.StructBlock):
+    """
+    A block for a color.
+    """
+    color = blocks.ChoiceBlock(
+        choices=TAILWIND_COLOR_CHOICES,
+    )
+
+    class Meta:
+        value_class = TailwindColorStructValue
+
+
 class ContentStreamField(blocks.StreamBlock):
     """"
     A StreamField that contains all the blocks that can be used in the general content.
@@ -136,3 +156,4 @@ class ContentStreamField(blocks.StreamBlock):
     
     class Meta:
         template = 'components/blocks/content.html'
+

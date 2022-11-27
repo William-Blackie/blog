@@ -1,12 +1,12 @@
 from django.db import models
 
-from wagtail.models import Page
+from website.utils.models import BasePage
 from wagtail.fields import RichTextField
 from wagtail.admin.panels import FieldPanel
 from wagtail.core.fields import StreamField
 from website.utils.blocks import ContentStreamField
 
-class HomePage(Page):
+class HomePage(BasePage):
     template = "pages/home_page.html"
 
     # Hero
@@ -35,7 +35,7 @@ class HomePage(Page):
     )
 
 
-    content_panels = Page.content_panels + [
+    content_panels = BasePage.content_panels + [
         # Hero
         FieldPanel("hero_image"),
         FieldPanel("image_meta_text"),

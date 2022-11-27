@@ -1,9 +1,11 @@
 {% extends "pages/base_page.html" %}
 {% load wagtailcore_tags %}
-
 {% block content %}
     {% include "components/hero.html" %}
-    {% if page.body %}
-        {% include_block page.body %}
-    {% endif %}
+    <div class="relative bg-slate-100">
+        {% include "atoms/accents/accent-top.html" with classes="text-slate-100"  %}
+        {% if page.body %}
+            {% include_block page.body %}
+        {% endif %}
+    </div>
 {% endblock content %}

@@ -1,5 +1,5 @@
 {% load wagtailcore_tags wagtailimages_tags %}
-<div class="container justify-between px-5 mx-auto ">
+<div class="container relative justify-between px-5 mx-auto">
     <div class="grid grid-cols-1 gap-4 md:grid-cols-6 lg:grid-cols-12">
         <div class="col-span-2 grid-rows-2 row-start-2 md:row-start-1 md:col-span-3 lg:col-span-6 sm:grid-rows-1">
             {% include "atoms/icons/worker.html" %}
@@ -7,19 +7,9 @@
         <div class="col-span-2 md:col-span-3 lg:col-span-6">
             <p class="text-xl text-gray-500">{{ page.meta_text }}</p>
             <div class="mt-5 text-lg text-black rich-text">{{ page.introduction|richtext }}</div>
-            <div class="hidden mt-10 md:flex">
+            <div class="relative z-10 mt-10 md:flex">
                 {% include "atoms/button.html" with href="william.blackie96@gmail.com" text="Contact me" %}
-                {% if page.cv_file %}
-                    {% include "atoms/button.html" with href=page.cv_file.url text="Download CV" external=True classes="ml-5" %}
-                {% endif %}
             </div>
         </div>
-        <div class="flex justify-around mt-5 md:hidden">
-            {% include "atoms/button.html" with href="william.blackie96@gmail.com" text="Contact me" %}
-            {% if page.cv_file %}
-                {% include "atoms/button.html" with href=page.cv_file.url text="Download CV" external=True classes="ml-5" %}
-            {% endif %}
-        </div>
-
     </div>
 </div>

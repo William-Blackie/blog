@@ -12,7 +12,7 @@
             </picture>
             {% if value.caption %}<p class="text-base leading-6 text-center text-gray-500">{{ value.caption }}</p>{% endif %}
         </div>
-        <div class="px-10 md:p-10 {% if value.alignment == "right" %}sm:order-1{% endif %}">
+        <div class="px-5 md:p-10 {% if value.alignment == "right" %}sm:order-1{% endif %}">
             {{ value.text|richtext }}
         </div>
     </div>
