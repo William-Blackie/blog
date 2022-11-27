@@ -1,17 +1,17 @@
 {% load wagtailimages_tags wagtailcore_tags %}
 <a class="flex flex-col" href="{{ value.link.url }}">
     <div class="p-4 transition ease-in-out delay-100 bg-white shadow-2xl rounded-3xl hover:-translate-y-1 hover:opacity-80">
-        <div class="lg:flex">
-            <div class="w-full h-full mb-3 lg:h-48 lg:w-48 lg:mb-0">
-                <picture class="object-scale-down w-full lg:object-cover lg:h-48 rounded-2xl">
-                    {% image value.image original format-webp as image_webp %}
+        <div class="grid grid-cols-1 sm:grid-cols-2">
+            <div class="max-w-none">
+                <picture class="rounded-2xl">
+                    {% image value.image fill-320x320 format-webp as image_webp %}
                     <source srcset="{{ image_webp.url }}" type="image/webp"/>
-                    {% image value.image original format-png as image_png %}
+                    {% image value.image fill-320x320 format-png as image_png %}
                     <source srcset="{{ image_png.url }}" type="image/png"/>
-                    {% image value.image original format-png %}
+                    {% image value.image fill-320x320 format-png class="w-full h-auto sm:w-auto"%}
                 </picture>
             </div>
-            <div class="flex-auto py-2 ml-3 justify-evenly">
+            <div class="flex-auto max-w-md py-2 ml-3">
                 <div>
                     <p class="flex-auto text-lg font-medium text-indigo-600">{{ value.title }}</p>
                     {{ value.text|richtext }}
