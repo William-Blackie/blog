@@ -26,3 +26,8 @@ def handler500(request, *args, **argv):
     response = render(request, '500.html', {})
     response.status_code = 500
     return response
+
+
+def robots(request):
+    content = "\n".join(["User-Agent: *", "Disallow: /search/", "Allow: /"])
+    return HttpResponse(content, content_type="text/plain")
