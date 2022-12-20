@@ -7,12 +7,13 @@ from wagtail import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
 
 from website.search import views as search_views
-from website.utils.views import error_500, error_404, robots
+from website.utils.views import error_500, error_404, robots, favicon
 
 urlpatterns = [
     path("django-admin/", admin.site.urls),
     path("admin/", include(wagtailadmin_urls)),
     path("documents/", include(wagtaildocs_urls)),
+    path("favicon.ico", favicon),
     path("search/", search_views.search, name="search"),
     path("robots.txt", robots),
 ]

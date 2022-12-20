@@ -31,3 +31,6 @@ def handler500(request, *args, **argv):
 def robots(request):
     content = "\n".join(["User-Agent: *", "Disallow: /search/", "Allow: /"])
     return HttpResponse(content, content_type="text/plain")
+
+def favicon(request):
+    return redirect(static("favicons/favicon.ico"))
