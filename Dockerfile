@@ -1,5 +1,4 @@
-# Use 
-
+# Build the frontend
 FROM node:18 as frontend
 
 COPY package.json package-lock.json postcss.config.js tailwind.config.js webpack.config.js ./
@@ -9,7 +8,7 @@ COPY ./website/templates ./website/templates
 RUN npm ci && npm run build
 
 # Use an official Python runtime based on Debian 10 "buster" as a parent image.
-FROM python:3.8.1-buster as backend
+FROM python:3.11.4-buster as backend
 
 # Add user that will be used in the container.
 RUN useradd wagtail
@@ -68,10 +67,8 @@ RUN /bin/true\
     && poetry install --no-interaction \
     && rm -rf /root/.cache/pypoetry
 
-# Set this directory to be owned by the "wagtail" user. This Wagtail project
-# uses SQLite, the folder needs to be owned by the user that
-# will be writing to the database file.
-RUN chown wagtail:wagtail /app
+# Set this directory to be owned by the "wagtail" user. 
+RUN chown wagtail:wagtail /app -R && chown wagtail:wagtail /home/wagtail -R
 
 # Copy the source code of the project into the container.
 COPY --chown=wagtail:wagtail . .
