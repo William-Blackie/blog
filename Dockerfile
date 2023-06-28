@@ -44,7 +44,7 @@ RUN apt-get install -y postgresql-client-14
 
 # Configure Poetry
 ENV POETRY_HOME="/opt/poetry" \
-    POETRY_VERSION=1.2.0
+    POETRY_VERSION=1.3.2
 
 # Add `poetry` to PATH
 ENV PATH="$POETRY_HOME/bin:$PATH"
