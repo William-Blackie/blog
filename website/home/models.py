@@ -3,7 +3,7 @@ from django.db import models
 from website.utils.models import BasePage
 from wagtail.fields import RichTextField
 from wagtail.admin.panels import FieldPanel
-from wagtail.core.fields import StreamField
+from wagtail.fields import StreamField
 from website.utils.blocks import ContentStreamField
 
 class HomePage(BasePage):

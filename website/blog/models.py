@@ -1,6 +1,6 @@
 from website.utils.blocks import ContentStreamField
 from website.utils.models import BasePage
-from wagtail.core.fields import StreamField
+from wagtail.fields import StreamField
 from django.db import models
 from wagtail.admin.panels import FieldPanel
 
