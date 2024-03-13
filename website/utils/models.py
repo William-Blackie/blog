@@ -1,6 +1,6 @@
 from django.db import models 
 from wagtail.admin.panels import MultiFieldPanel, FieldPanel
-from wagtail.core.models import Page
+from wagtail.models import Page
 
 class ListingFields(models.Model):
     listing_image = models.ForeignKey(
